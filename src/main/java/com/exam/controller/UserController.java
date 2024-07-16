@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 
+import java.security.Principal;
 import java.util.*;
 
 @RestController
@@ -41,7 +42,10 @@ public class UserController {
     public User getUser(@PathVariable("username") String username){
         return this.userService.getUser(username);
     }
-
+    @GetMapping("/test")
+    public String testApi(Principal principal){
+        return "This is test Url";
+    }
     //delete user by id
     @DeleteMapping("/{userId}")
     public void deleteUser(@PathVariable("userId") Long userId){

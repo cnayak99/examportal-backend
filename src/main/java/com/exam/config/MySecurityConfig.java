@@ -22,6 +22,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
@@ -60,7 +61,7 @@ public class MySecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/generate-token", "/user/").permitAll() // Allow access without authentication
+                        .requestMatchers("/generate-token", "/user/","current-user").permitAll() // Allow access without authentication
                         .anyRequest().authenticated() // Require authentication for all other requests
                 )
                 .exceptionHandling(ex -> ex
@@ -80,6 +81,7 @@ public class MySecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
+                        .allowedHeaders("*")
                         .allowedMethods("*");
             }
         };

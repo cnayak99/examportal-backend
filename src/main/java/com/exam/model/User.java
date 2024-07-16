@@ -95,7 +95,6 @@ public class User implements UserDetails {
         Set<Authority> set = new HashSet<>();
         this.userRoles.forEach(userRole ->{
             set.add(new Authority(userRole.getRole().getRoleName()));
-            System.out.println("authority sout is: " +userRole.getRole().getRoleName());
         });
         return set;
     }

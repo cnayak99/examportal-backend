@@ -20,6 +20,16 @@ public class Quiz {
 
     private String maxMarks;
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    private  boolean active=false;
+
     private String numberOfQuestion;
 
     @ManyToOne(fetch = FetchType.EAGER)
